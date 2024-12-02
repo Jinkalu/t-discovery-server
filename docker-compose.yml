@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  discovery-server:
+    container_name: discovery-server-container
+    build:
+      context: .
+      args:
+        DISCOVERY_PORT: ${DISCOVERY_PORT}
+
+    image: discovery-server:v1
+    restart: unless-stopped
+    env_file:
+      - .env
+    expose:
+      - ${DISCOVERY_PORT}
+    ports:
+     - ${DISCOVERY_PORT}:${HOST_DISCOVERY_PORT}
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    external: true
+    driver: bridge
+
