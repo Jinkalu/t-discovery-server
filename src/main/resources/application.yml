@@ -1,9 +1,9 @@
 server:
-  port: 8190
+  port: ${PORT}
 
 spring:
   application:
-    name: discovery-server
+    name: ${SPRING_APP_NAME}
   config:
     import: optional:configserver:http://localhost:8190
 
